@@ -1,0 +1,37 @@
+<apex:page controller="PositionList">
+  <apex:form>
+    <apex:pageBlock title="Positions List" id="position_list">
+      Select Status:
+      <apex:selectList value="{! filterStatus }" size="1">
+        <apex:selectOptions value="{! items }" />
+        <apex:actionSupport
+          event="onchange"
+          action="{! filterPositions}"
+          reRender="position_list"
+        />
+      </apex:selectList>
+
+      <apex:pageBlockTable value="{! positions}" var="pl" id="positions_list">
+        <apex:column value="{! pl.Position_ID__c}" />
+        <apex:column value="{! pl.Name}" />
+        <apex:column headerValue="{! pl.Status__c }">
+          <apex:inputField value="{! pl.Status__c}" />
+        </apex:column>
+        <apex:column value="{! pl.Open_Date__c}" />
+        <apex:column headerValue="{! pl.Closed_Date__c}">
+          <apex:inputField value="{! pl.Closed_Date__c}" />
+        </apex:column>
+        <apex:column value="{! pl.Max_Pay__c}" />
+        <apex:column value="{! pl.Min_Pay__c}" />
+      </apex:pageBlockTable>
+
+      <apex:pageBlockButtons>
+        <apex:commandButton
+          action="{! savePositions }"
+          value="Save"
+          reRender="position_list"
+        />
+      </apex:pageBlockButtons>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
