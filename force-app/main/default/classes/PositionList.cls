@@ -9,7 +9,7 @@ public with sharing class PositionList {
 
   public void loadPositions() {
     String query = 'SELECT Position_ID__c, Name, Status__c, Open_Date__c, Closed_Date__c, Max_Pay__c, Min_Pay__c FROM Position__c ';
-    if (filterStatus != null && filterStatus != '') {
+    if (String.IsNotBlank(filterStatus)) {
       query += ' WHERE Status__c = :filterStatus';
     }
     positions = Database.query(query);
