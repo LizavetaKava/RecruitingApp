@@ -1,7 +1,7 @@
 @isTest
 private class PositionListTest {
-  @isTest
-  private static void createTestData() {
+  @TestSetup
+  static void makeData() {
     List<Position__c> positions = new List<Position__c>{
       new Position__c(
         Name = 'Test Position1',
@@ -38,7 +38,6 @@ private class PositionListTest {
 
   @isTest
   static void testConstructor() {
-    createTestData();
     PositionList controller = new PositionList();
     System.assertEquals(
       '',
@@ -54,7 +53,6 @@ private class PositionListTest {
 
   @isTest
   static void testLoadPositions() {
-    createTestData();
     PositionList controller = new PositionList();
     controller.loadPositions();
     System.assertEquals(
@@ -66,7 +64,6 @@ private class PositionListTest {
 
   @isTest
   static void testFilterPositions() {
-    createTestData();
     PositionList controller = new PositionList();
     controller.filterStatus = 'Open';
     controller.filterPositions();
@@ -85,7 +82,6 @@ private class PositionListTest {
 
   @isTest
   static void testSavePositions() {
-    createTestData();
     PositionList controller = new PositionList();
     controller.loadPositions();
 
